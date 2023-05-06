@@ -1,0 +1,177 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "874fa144-c213-428a-bdaf-7c50b0c6b9f2"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "NFTCalvi": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "docs/",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/CNAME",
+              "src/404.html",
+              "src/favicon.png",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "allowedCommonJsDependencies": [
+              "@solana/buffer-layout",
+              "borsh",
+              "bs58",
+              "buffer",
+              "jayson/lib/client/browser",
+              "rpc-websockets",
+              "secp256k1",
+              "tweetnacl"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "src/nfluent.scss"
+            ],
+            "scripts": [
+
+            ],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "50000kb",
+                  "maximumError": "200mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "400kb",
+                  "maximumError": "1020kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "debug": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "50000kb",
+                  "maximumError": "200mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "400kb",
+                  "maximumError": "1020kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.debug.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "intranet": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "50000kb",
+                  "maximumError": "200mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "400kb",
+                  "maximumError": "1020kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.intranet.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "NFTCalvi:build:production"
+            },
+            "debug": {
+              "browserTarget": "NFTCalvi:build:debug"
+            },
+            "development": {
+              "browserTarget": "NFTCalvi:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "NFTCalvi:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "styles": [
+              "src/nfluent.scss",
+              "src/styles.scss"
+            ],
+            "scripts": [
+
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "NFTCalvi"
+}
